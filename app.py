@@ -3,8 +3,19 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from bson import ObjectId
 from database import student_collection, student_helper, student_list_helper
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+#CORS
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Models
 class AddressModel(BaseModel):
