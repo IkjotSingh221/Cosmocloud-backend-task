@@ -32,6 +32,10 @@ class UpdateStudentModel(BaseModel):
     age: Optional[int]
     address: Optional[AddressModel]
 
+@app.get("/")
+async def home():
+    return {"message": "Welcome to the Student Management System!"}
+
 # Create Student
 @app.post("/students", status_code=201)
 async def create_student(student: StudentModel):
