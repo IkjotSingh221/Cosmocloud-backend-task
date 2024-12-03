@@ -60,16 +60,6 @@ def student_helper(student) -> dict:
 def student_list_helper(students) -> list:
     return [student_helper(student) for student in students]
 
-@app.get("/")
-async def home():
-    return {"message": "Welcome to the Student Management System!"}
-
-@app.get("/load-env")
-async def load_env_var():
-    mongo_string = os.getenv("MONGO_STRING")
-    if not mongo_string:
-        raise HTTPException(status_code=500, detail="MONGO_STRING environment variable is not set!")
-    return {"MONGO_STRING": mongo_string}
 
 # Create Student
 @app.post("/students", status_code=201)
