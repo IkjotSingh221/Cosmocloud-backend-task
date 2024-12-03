@@ -4,6 +4,7 @@ from typing import Optional, List
 from bson import ObjectId
 from database import student_collection, student_helper, student_list_helper
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app = FastAPI()
 
@@ -35,6 +36,13 @@ class UpdateStudentModel(BaseModel):
 @app.get("/")
 async def home():
     return {"message": "Welcome to the Student Management System!"}
+
+@app.get("/load-env")
+async def load_env_var():
+    mongo_string = os.getenv("MONGO_STRING")
+    if not mongo_string:
+        raise HTTPException(status_code=500, detail="MONGO_STRING environment variable is not set!")
+    return {"MONGO_STRING": mongo_string}
 
 # Create Student
 @app.post("/students", status_code=201)
