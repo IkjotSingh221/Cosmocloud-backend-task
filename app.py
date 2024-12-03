@@ -86,4 +86,4 @@ async def delete_student(id: str = Path(..., description="The ID of the student"
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app",reload=True)
+    uvicorn.run("app:app",host="0.0.0.0",port=10000,reload=True)
