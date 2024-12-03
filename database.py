@@ -3,10 +3,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-USER = os.getenv("USER")
-PASS = os.getenv("PASS")
-
-MONGO_DETAILS = f"mongodb+srv://{USER}:{PASS}@cluster0.of5o4.mongodb.net/"
+MONGO_DETAILS = os.getenv("MONGO_STRING")
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 database = client.student_management
